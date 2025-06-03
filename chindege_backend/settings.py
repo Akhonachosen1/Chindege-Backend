@@ -65,7 +65,8 @@ ASGI_APPLICATION = 'chindege_backend.asgi.application'
 
 # SQL Server (hosted on Azure)
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True) {
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    {
         'ENGINE': 'mssql',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
