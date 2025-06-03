@@ -1,6 +1,16 @@
 from django.contrib import admin
-from django.urls import path
+from django.http import JsonResponse
+from django.urls import path, include
+
+def home(request):
+    return JsonResponse({"message": "Chindege Backend API running ✅"})
 from . import views
+
+
+urlpatterns = [
+    path('', home),  # This is the default root view
+    path('api/', include('game.urls')),  # Your game endpoints
+]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
