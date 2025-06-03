@@ -1,11 +1,13 @@
 from pathlib import Path
 from datetime import timedelta
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'your-secret-key'  # Replace with a real one in production
-DEBUG = True
-ALLOWED_HOSTS = ['*']  # Accept requests from anywhere (good for Codespaces)
+SECRET_KEY = 'your-secret-key'  # Replace with a secure one in production
+DEBUG = False  # Set to False for production
+
+ALLOWED_HOSTS = ['*']  # Allow all for now (tighten in production)
 
 # Application definition
 INSTALLED_APPS = [
@@ -60,7 +62,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'chindege_backend.wsgi.application'
 ASGI_APPLICATION = 'chindege_backend.asgi.application'
 
-# Database (SQLite for now)
+# SQL Server (hosted on Azure)
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
@@ -76,31 +78,28 @@ DATABASES = {
     }
 }
 
-# Custom user model
 AUTH_USER_MODEL = 'game.User'
 
-# Password validation (you can adjust as needed)
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS (for Unity frontend or testing)
+# CORS for Unity frontend/API access
 CORS_ALLOW_ALL_ORIGINS = True
 
-# DRF + JWT settings
+# Django REST Framework with JWT auth
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -112,7 +111,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
-# Channels (for WebSocket real-time support)
+# Channels config (replace with production Redis in Azure later)
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -121,3 +120,4 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
