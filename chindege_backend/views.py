@@ -1,6 +1,13 @@
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from game.services.payment_service import create_payment, check_payment_status
+import logging
+
+logger = logging.getLogger(__name__)
+
+def register_user(request):
+    logger.info("register_user called")
+    return JsonResponse({"message": "register_user endpoint hit successfully!"})
 
 
 def index(request):
