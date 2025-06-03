@@ -66,10 +66,10 @@ ASGI_APPLICATION = 'chindege_backend.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'chindege-db',
-        'USER': 'chindegeadmin@chindege-server',
-        'PASSWORD': '=7)C5GUY9g529B$',
-        'HOST': 'chindege-server.database.windows.net',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
         'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
