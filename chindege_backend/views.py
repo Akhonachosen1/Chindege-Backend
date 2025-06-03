@@ -43,3 +43,28 @@ def paynow_status(request):
 @csrf_exempt
 def paynow_webhook(request):
     return JsonResponse({"status": "received"})
+
+@csrf_exempt
+def register_user(request):
+    return JsonResponse({"message": "User registered ✅"}, status=200)
+
+@csrf_exempt
+def login_user(request):
+    return JsonResponse({"message": "Login successful ✅"}, status=200)
+
+@csrf_exempt
+def get_user_profile(request):
+    return JsonResponse({"user": "sample_user"}, status=200)
+
+@csrf_exempt
+def start_game(request):
+    return JsonResponse({"message": "Game started"}, status=200)
+
+@csrf_exempt
+def submit_score(request):
+    return JsonResponse({"message": "Score submitted"}, status=200)
+
+@csrf_exempt
+def get_leaderboard(request):
+    return JsonResponse({"leaderboard": []}, status=200)
+
