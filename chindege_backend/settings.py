@@ -5,10 +5,18 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'your-secret-key'  # Replace with a secure one in production
-DEBUG = False  # Set to False for production
+# Get SECRET_KEY from environment variable - MUST be set in production
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['*']  # Allow all for now (tighten in production)
+# Debug should be False in production
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+
+# Configure allowed hosts - replace with your actual domain
+ALLOWED_HOSTS = [
+    'chindegebackend-hnb5geb6h4c7acej.southafricanorth-01.azurewebsites.net',
+    'localhost',
+    '127.0.0.1',
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -63,10 +71,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'chindege_backend.wsgi.application'
 ASGI_APPLICATION = 'chindege_backend.asgi.application'
 
-# SQL Server (hosted on Azure)
+# Database configuration - Azure SQL Server
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-    {
+    'default': {
         'ENGINE': 'mssql',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
@@ -113,13 +120,13 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
-# Channels config (replace with production Redis in Azure later)
+# Channels config - Use Redis URL from environment
+redis_url = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379')
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
+            "hosts": [redis_url],
         },
     },
 }
-
