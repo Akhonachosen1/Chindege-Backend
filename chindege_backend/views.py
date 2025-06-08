@@ -5,10 +5,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def register_user(request):
-    logger.info("register_user called")
-    return JsonResponse({"message": "register_user endpoint hit successfully!"})
-
 
 def index(request):
     return HttpResponse("Welcome to Chindege Backend!")
