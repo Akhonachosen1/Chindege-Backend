@@ -2,12 +2,13 @@ from paynow import Paynow
 from game.models import User, Transaction
 import requests
 from urllib.parse import parse_qs
+import os
 
-# Credentials (should be environment variables in production)
-PAYNOW_INTEGRATION_ID = "20952"
-PAYNOW_INTEGRATION_KEY = "7899c1ff-5656-4c37-af85-ed6b0f462bbb"
-PAYNOW_RETURN_URL = "https://unity3d.com"
-PAYNOW_RESULT_URL = "https://webhook.site/a5888fc0-fe03-4f42-80f7-ffdadca13f5d"
+# Credentials now pulled from environment variables
+PAYNOW_INTEGRATION_ID = os.getenv("PAYNOW_ID")
+PAYNOW_INTEGRATION_KEY = os.getenv("PAYNOW_KEY")
+PAYNOW_RETURN_URL = os.getenv("PAYNOW_RETURN_URL")
+PAYNOW_RESULT_URL = os.getenv("PAYNOW_RESULT_URL")
 
 paynow = Paynow(
     PAYNOW_INTEGRATION_ID,
