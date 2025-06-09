@@ -21,4 +21,4 @@ class ResponseTypeLoggerMiddleware:
             return JsonResponse({"error": "Unexpected response type from view."}, status=500)
 
         return response
-
+          2avkja-codex/create-tests-for-generate_crash_point,-start_new_round,-and main

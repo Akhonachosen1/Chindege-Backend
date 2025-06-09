@@ -78,4 +78,9 @@ jobs:
         with:
           app-name: 'ChindegeBackend'
           slot-name: 'Production'
+        env:
+          PAYNOW_ID: ${{ secrets.PAYNOW_ID }}
+          PAYNOW_KEY: ${{ secrets.PAYNOW_KEY }}
+          PAYNOW_RETURN_URL: ${{ secrets.PAYNOW_RETURN_URL }}
+          PAYNOW_RESULT_URL: ${{ secrets.PAYNOW_RESULT_URL }}
           
