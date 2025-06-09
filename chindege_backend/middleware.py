@@ -1,7 +1,7 @@
 from django.http import JsonResponse, HttpResponse
 
-
 class ResponseTypeLoggerMiddleware:
+    """Logs response types and guards against non-HTTP responses."""
     def __init__(self, get_response):
         self.get_response = get_response
 
@@ -21,3 +21,4 @@ class ResponseTypeLoggerMiddleware:
             return JsonResponse({"error": "Unexpected response type from view."}, status=500)
 
         return response
+          2avkja-codex/create-tests-for-generate_crash_point,-start_new_round,-and main
